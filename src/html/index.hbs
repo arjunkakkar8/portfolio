@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang='en' data-version='{{timestamp}}'>
+
+<head>
+	{{> base/meta }}
+	<title>{{copy.title}}</title>
+	<link rel="stylesheet" type="text/css" href="https://use.typekit.net/nqd7cwu.css">
+	{{!-- bootstrappy --}}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		crossorigin="anonymous">
+	<link rel='stylesheet' type="text/css" href='style.css' />
+	<script src="https://kit.fontawesome.com/5403ac74fa.js" crossorigin="anonymous"></script>
+	<script src="./assets/scripts/d3.v5.min.js"></script>
+</head>
+
+<body>
+	{{> story/intro }}
+	<script type="text/javascript" src="index.js" async></script>
+	{{> base/tracking }}
+</body>
+
+</html>

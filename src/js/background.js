@@ -42,8 +42,8 @@ function init() {
   onWindowResize();
   window.addEventListener("resize", onWindowResize, false);
   document.onmousemove = function (e) {
-    uniforms.u_mouse.value.x = e.pageX;
-    uniforms.u_mouse.value.y = e.pageY;
+    uniforms.u_mouse.value.x = e.pageX * window.devicePixelRatio;
+    uniforms.u_mouse.value.y = e.pageY * window.devicePixelRatio;
   };
 }
 
@@ -111,7 +111,7 @@ function fragmentShader() {
 
     void main() {
         vec2 st = gl_FragCoord.xy/u_resolution.xy;
-        vec2 sm = 2.0 * u_mouse.xy/u_resolution.xy;
+        vec2 sm = u_mouse.xy/u_resolution.xy;
         gl_FragColor = openerFilter(st, 5.0) * mouseColor(st, sm);
     }`;
 }

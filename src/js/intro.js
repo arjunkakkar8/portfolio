@@ -8,8 +8,10 @@ textWrappers.forEach((node) => {
   );
 });
 
-d3.select("#intro").style("transform", "translate(-50%,-50%)");
-setTimeout(initText, 1000);
+d3.select("#intro")
+  .style("transform", "translate(-50%,-50%)")
+  .style("display", "inline-block");
+setTimeout(initText, 1200);
 
 function initText() {
   d3.selectAll(".letter")

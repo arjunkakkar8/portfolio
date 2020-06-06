@@ -1182,8 +1182,8 @@ var textWrappers = document.querySelectorAll(".letters");
 textWrappers.forEach(function (node) {
   node.innerHTML = node.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 });
-d3.select("#intro").style("transform", "translate(-50%,-50%)");
-setTimeout(initText, 1000);
+d3.select("#intro").style("transform", "translate(-50%,-50%)").style("display", "inline-block");
+setTimeout(initText, 1200);
 
 function initText() {
   d3.selectAll(".letter").style("opacity", 0).style("transform", function () {
@@ -37080,7 +37080,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    uniform vec2 u_resolution;\n    uniform float u_time;\n    uniform vec2 u_mouse;\n\n    float openerFilter(vec2 pos, float duration){\n        if( u_time > duration ) {return 1.0;}\n        float slitSizeY = 0.2 * pow(max(u_time-2.5, 0.0), 5.0) / duration;\n        float slitSizeX = 0.1 * pow(max(u_time-1.0, 0.0), 5.0) / duration;\n        float yFilter = smoothstep(0.5-slitSizeY, 0.5, pos.y)-smoothstep(0.5, 0.5+slitSizeY, pos.y);\n        float xFilter = smoothstep(0.5-slitSizeX, 0.5, pos.x)-smoothstep(0.5, 0.5+slitSizeX, pos.x);\n        float alpha = xFilter * yFilter;\n        return alpha;\n    }\n    vec4 baseColor(vec2 pos){\n        return vec4(0.3 * pos.x * abs(sin(u_time/4.0)), pos.y * 0.5 * abs(sin(u_time/20.0)), 0.3, 0.8);\n    }\n\n    vec4 mouseColor(vec2 pos, vec2 mouse){\n        vec4 base = baseColor(pos);\n        float adj = 0.0;\n        if(mouse.x > 0.8){\n            adj+= (mouse.x-0.8) * smoothstep(0.8, 1.0, pos.x);\n        }\n        if(mouse.x < 0.2){\n            adj+= (0.2-mouse.x) * smoothstep(0.2, 0.0, pos.x);\n        }\n        if(mouse.y > 0.8){\n            adj+= (mouse.y-0.8) * smoothstep(0.2, 0.0, pos.y);\n        }\n        if(mouse.y < 0.2){\n            adj+= (0.2-mouse.y) * smoothstep(0.8, 1.0, pos.y);\n        }\n        adj = min(adj, 2.0);\n        base.w += adj;\n        return base;\n    }\n\n    void main() {\n        vec2 st = gl_FragCoord.xy/u_resolution.xy;\n        vec2 sm = 2.0 * u_mouse.xy/u_resolution.xy;\n        gl_FragColor = openerFilter(st, 5.0) * mouseColor(st, sm);\n    }"]);
+  var data = _taggedTemplateLiteral(["\n    uniform vec2 u_resolution;\n    uniform float u_time;\n    uniform vec2 u_mouse;\n\n    float openerFilter(vec2 pos, float duration){\n        if( u_time > duration ) {return 1.0;}\n        float slitSizeY = 0.2 * pow(max(u_time-2.5, 0.0), 5.0) / duration;\n        float slitSizeX = 0.1 * pow(max(u_time-1.0, 0.0), 5.0) / duration;\n        float yFilter = smoothstep(0.5-slitSizeY, 0.5, pos.y)-smoothstep(0.5, 0.5+slitSizeY, pos.y);\n        float xFilter = smoothstep(0.5-slitSizeX, 0.5, pos.x)-smoothstep(0.5, 0.5+slitSizeX, pos.x);\n        float alpha = xFilter * yFilter;\n        return alpha;\n    }\n    vec4 baseColor(vec2 pos){\n        return vec4(0.3 * pos.x * abs(sin(u_time/4.0)), pos.y * 0.5 * abs(sin(u_time/20.0)), 0.3, 0.8);\n    }\n\n    vec4 mouseColor(vec2 pos, vec2 mouse){\n        vec4 base = baseColor(pos);\n        float adj = 0.0;\n        if(mouse.x > 0.8){\n            adj+= (mouse.x-0.8) * smoothstep(0.8, 1.0, pos.x);\n        }\n        if(mouse.x < 0.2){\n            adj+= (0.2-mouse.x) * smoothstep(0.2, 0.0, pos.x);\n        }\n        if(mouse.y > 0.8){\n            adj+= (mouse.y-0.8) * smoothstep(0.2, 0.0, pos.y);\n        }\n        if(mouse.y < 0.2){\n            adj+= (0.2-mouse.y) * smoothstep(0.8, 1.0, pos.y);\n        }\n        adj = min(adj, 2.0);\n        base.w += adj;\n        return base;\n    }\n\n    void main() {\n        vec2 st = gl_FragCoord.xy/u_resolution.xy;\n        vec2 sm = u_mouse.xy/u_resolution.xy;\n        gl_FragColor = openerFilter(st, 5.0) * mouseColor(st, sm);\n    }"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -37147,8 +37147,8 @@ function init() {
   window.addEventListener("resize", onWindowResize, false);
 
   document.onmousemove = function (e) {
-    uniforms.u_mouse.value.x = e.pageX;
-    uniforms.u_mouse.value.y = e.pageY;
+    uniforms.u_mouse.value.x = e.pageX * window.devicePixelRatio;
+    uniforms.u_mouse.value.y = e.pageY * window.devicePixelRatio;
   };
 }
 

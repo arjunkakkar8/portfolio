@@ -1,0 +1,16 @@
+<div id="content">
+  {{#each copy.projects}}
+    <div
+      class="project-container"
+      data-description="{{{this.description}}}"
+      data-index="{{@index}}"
+    >
+      <h3 class="project-title">
+        <a href="{{{this.link}}}" target="_blank">
+          {{{this.title}}}
+        </a>
+      </h3>
+      <p class="project-description"></p>
+    </div>
+  {{/each}}
+</div>

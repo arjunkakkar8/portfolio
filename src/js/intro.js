@@ -1,3 +1,5 @@
+import { initObserver } from "./scroller";
+
 let textWrappers = document.querySelectorAll(".letters");
 textWrappers.forEach((node) => {
   node.innerHTML = node.textContent.replace(
@@ -7,32 +9,23 @@ textWrappers.forEach((node) => {
 });
 
 d3.select("#intro").style("transform", "translate(-50%,-50%)");
+setTimeout(initText, 1000);
 
-// d3.select("h1, h2")
-// .style("transform", "scale(0) translate(-50%, -50%)")
-// .transition()
-// .duration(5000)
-// .style("transform", "scale(1)")
-
-d3.selectAll(".letter")
-  .style("opacity", 0)
-  .style(
-    "transform",
-    () =>
-      `translate(${(Math.random() - 0.5) * 10}px, ${
-        (Math.random() - 0.5) * 10
-      }px) scale(0) rotate(45deg)`
-  )
-  .transition()
-  .delay((_d, i) => 400 * Math.sqrt(i))
-  .duration(100)
-  .style("opacity", 1)
-  .style("transform", "translate(0px,0px) scale(1)")
-  .on("end", (d, i, sel) => {
-    if (i + 1 == sel.length) {
-      setTimeout(postText_step1, 500);
-    }
-  });
+function initText() {
+  d3.selectAll(".letter")
+    .style("opacity", 0)
+    .style("transform", () => `translate(20px, 0px) scale(0) rotate(45deg)`)
+    .transition()
+    .delay((_d, i) => 400 * Math.sqrt(i))
+    .duration(100)
+    .style("opacity", 1)
+    .style("transform", "translate(0px,0px) scale(1)")
+    .on("end", (d, i, sel) => {
+      if (i + 1 == sel.length) {
+        setTimeout(postText_step1, 500);
+      }
+    });
+}
 
 function postText_step1() {
   d3.select("#intro")
@@ -66,4 +59,21 @@ function postText_step2() {
 
 function postText_step3() {
   d3.select("#intro").style("position", "static");
+  d3.select("#content")
+    .style("display", "block")
+    .transition()
+    .duration(300)
+    .style("opacity", 1);
+  d3.selectAll(".project-container")
+    .style("transform", "scale(1.3) translate(5%, -2%)")
+    .transition()
+    .duration(800)
+    .delay((_d, i) => i * 300)
+    .style("opacity", 1)
+    .style("transform", "scale(1)");
+  initObserver();
+}
+
+function postText_step4() {
+  console.log("step 4");
 }

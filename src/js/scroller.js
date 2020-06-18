@@ -1,21 +1,44 @@
+import * as THREE from "three";
 import "intersection-observer";
+import { uniforms } from "./background";
 
 function initObserver() {
   let active = null;
   const options = {
     root: document.querySelector("#content"),
-    rootMargin: "-15% 0px 0px 0px",
-    threshold: 0,
+    threshold: new Array(10).fill(1).map((_, i) => 0.1 * i),
   };
 
   const intersectionObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      let relY = entry.boundingClientRect.y - entry.rootBounds.y;
-      if (relY < 0) {
-        if (active != entry.target) {
-          console.log(entry);
-          activateTarget(entry.target, active);
-          active = entry.target;
+      if (entry.isIntersecting) {
+        let relY = entry.boundingClientRect.y - entry.rootBounds.y;
+        if (relY < 50) {
+          if (active != entry.target) {
+            const curr_tex = active
+              ? d3.select(active).node().dataset.img
+              : null;
+            const next_tex = d3.select(entry.target).node().dataset.img;
+            if (active) {
+              uniforms.tex_curr.value = new THREE.TextureLoader().load(
+                curr_tex,
+                function (tex) {
+                  uniforms.tex_curr_ratio.value =
+                    tex.image.width / tex.image.height;
+                }
+              );
+            }
+            uniforms.tex_next.value = new THREE.TextureLoader().load(
+              next_tex,
+              function (tex) {
+                uniforms.tex_next_ratio.value =
+                  tex.image.width / tex.image.height;
+              }
+            );
+            uniforms.transitionProgress.value = 0;
+            activateTarget(entry.target, active);
+            active = entry.target;
+          }
         }
       }
     });
@@ -26,29 +49,8 @@ function initObserver() {
 }
 
 function activateTarget(el, prevEl) {
-  let offset;
-  const textOffsetPre = prevEl
-    ? d3.select(prevEl).select(".project-description").node().offsetHeight
-    : 0;
-  const scrollPos = el.parentElement.scrollTop;
-  clearText();
-  const paraNode = d3.select(el).select(".project-description");
-  const data = el.dataset;
-  paraNode.text(data.description).transition().style("opacity", 1);
-
-  if (prevEl) {
-    if (el.dataset.index > prevEl.dataset.index) {
-      offset = scrollPos - textOffsetPre - 10;
-    } else {
-      offset = scrollPos;
-    }
-  }
-
-  el.parentElement.scrollTop = offset;
-}
-
-function clearText() {
-  d3.selectAll(".project-description").style("opacity", 0).html(null);
+  d3.select(prevEl).classed("active", false);
+  d3.select(el).classed("active", true);
 }
 
 export { initObserver };

@@ -73,9 +73,5 @@ function postText_step3() {
     .delay((_d, i) => i * 300)
     .style("opacity", 1)
     .style("transform", "scale(1)");
-  initObserver();
-}
-
-function postText_step4() {
-  console.log("step 4");
+  setTimeout(initObserver, 700);
 }

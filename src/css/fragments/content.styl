@@ -1,23 +1,91 @@
 #content
     position relative
     padding 3em
-    padding-top 2em
+    padding-top 4em
     margin 0
     border-top 3px solid rgba(0, 0, 0, 0.2)
     overflow-y scroll
     opacity 0
-    
+    text-shadow 0px 0px 10px black
+    box-sizing border-box
+    scroll-behavior smooth
+
 .project-container   
     max-width 40em
     margin auto
-    margin-bottom 5em
     opacity 0
-    padding 1em
+    padding 4em 1em
+    color rgba(255, 255, 255, 0.2)
+    transition color 500ms
     h3
         font-size 1.3em
         font-weight 200
         +mq('bp-4')
             font-size 1.5em
     a
-        color white
+        transition color 500ms
+        color rgba(255, 255, 255, 0.2)
         text-decoration none
+    &.active
+        color white
+        a
+            color white
+
+#contact
+    margin 30vh 0
+    padding 0 1em
+    font-size 1.3em
+    font-weight 200
+    text-align center
+    +mq('bp-4')
+        font-size 2.5em
+
+#icon-row
+    display flex
+    flex-flow row
+    justify-content space-evenly
+    align-items flex-start
+    max-width 20em
+    margin auto
+
+
+svg 
+    fill white
+
+#icon-twitter
+    height 30px
+    width 30px    
+    +mq('bp-4')
+        height 50px
+        width 50px    
+
+#icon-linkedin
+    height 28px
+    width 28px
+    +mq('bp-4')
+        height 48px
+        width 48px        
+
+#icon-email 
+    padding-top 2.5px
+    height 32px
+    width 32px
+    +mq('bp-4')
+        height 55px
+        width 55px    
+    
+#contact-link
+    position fixed 
+    top 0
+    right 0
+    transform-origin top right
+    transform rotate(-90deg) translate(0%, -100%)
+    padding-right 2.5rem
+    text-decoration none
+    font-size .8rem
+    font-weight 300
+    color white
+    +mq('bp-4')
+        font-size 1.2rem
+        font-weight 400
+        padding-right 2rem

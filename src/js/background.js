@@ -9,6 +9,8 @@ init();
 animate();
 
 function init() {
+  THREE.Cache.enabled = true;
+  
   container = document.body;
 
   camera = new THREE.Camera();

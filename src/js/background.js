@@ -10,7 +10,7 @@ animate();
 
 function init() {
   THREE.Cache.enabled = true;
-  
+
   container = document.body;
 
   camera = new THREE.Camera();
@@ -167,7 +167,7 @@ function fragmentShader() {
         }
       }
 
-      color /= Quality * Directions;
+      color /= Quality * Directions + 4.;
       return color;
     }
 

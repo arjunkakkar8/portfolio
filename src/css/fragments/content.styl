@@ -4,6 +4,7 @@
     padding-top 4em
     margin 0
     border-top 3px solid rgba(0, 0, 0, 0.2)
+    overflow-x hidden
     overflow-y scroll
     opacity 0
     text-shadow 0px 0px 10px black
@@ -17,19 +18,30 @@
     padding 4em 1em
     color rgba(255, 255, 255, 0.2)
     transition color 500ms
+    font-weight 300
     h3
         font-size 1.3em
-        font-weight 200
+        font-weight 400
         +mq('bp-4')
             font-size 1.5em
     a
         transition color 500ms
         color rgba(255, 255, 255, 0.2)
         text-decoration none
+    svg 
+        fill rgba(255, 255, 255, 0.2)
+        position relative
+        top 13px
     &.active
         color white
         a
             color white
+        svg 
+            fill white
+
+.project-role,.project-tech
+    font-size 0.85em
+    font-weight 200
 
 #contact
     margin 30vh 0
@@ -85,6 +97,12 @@ svg
     font-size .8rem
     font-weight 300
     color white
+    transition transform 100ms, font-size 100ms
+    &:hover
+        transform rotate(-90deg) translate(3%, -105%)
+        font-size .9rem
+        +mq('bp-4')
+            font-size 1.3rem
     +mq('bp-4')
         font-size 1.2rem
         font-weight 400

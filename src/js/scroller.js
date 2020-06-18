@@ -13,7 +13,7 @@ function initObserver() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         let relY = entry.boundingClientRect.y - entry.rootBounds.y;
-        if (relY < 50) {
+        if (relY < 100) {
           if (active != entry.target) {
             const curr_tex = active
               ? d3.select(active).node().dataset.img

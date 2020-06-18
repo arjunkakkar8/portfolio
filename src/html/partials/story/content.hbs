@@ -10,7 +10,11 @@
           {{{this.title}}}
         </a>
       </h3>
-      <p class="project-description">{{{this.description}}}</p>
+      <div class="project-description">
+        <p>{{{this.description}}}</p>
+        <p class="project-role">Role: {{{this.role}}}</p>
+        <p class="project-tech">Tech highlights: {{{this.tech}}}</p>
+      </div>
     </div>
   {{/each}}
 

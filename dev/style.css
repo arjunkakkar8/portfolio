@@ -4,6 +4,7 @@
   padding-top: 4em;
   margin: 0;
   border-top: 3px solid rgba(0,0,0,0.2);
+  overflow-x: hidden;
   overflow-y: scroll;
   opacity: 0;
   text-shadow: 0px 0px 10px #000;
@@ -17,10 +18,11 @@
   padding: 4em 1em;
   color: rgba(255,255,255,0.2);
   transition: color 500ms;
+  font-weight: 300;
 }
 .project-container h3 {
   font-size: 1.3em;
-  font-weight: 200;
+  font-weight: 400;
 }
 @media only screen and (min-width: 40em) {
   .project-container h3 {
@@ -32,11 +34,24 @@
   color: rgba(255,255,255,0.2);
   text-decoration: none;
 }
+.project-container svg {
+  fill: rgba(255,255,255,0.2);
+  position: relative;
+  top: 13px;
+}
 .project-container.active {
   color: #fff;
 }
 .project-container.active a {
   color: #fff;
+}
+.project-container.active svg {
+  fill: #fff;
+}
+.project-role,
+.project-tech {
+  font-size: 0.85em;
+  font-weight: 200;
 }
 #contact {
   margin: 30vh 0;
@@ -103,6 +118,16 @@ svg {
   font-size: 0.8rem;
   font-weight: 300;
   color: #fff;
+  transition: transform 100ms, font-size 100ms;
+}
+#contact-link:hover {
+  transform: rotate(-90deg) translate(3%, -105%);
+  font-size: 0.9rem;
+}
+@media only screen and (min-width: 40em) {
+  #contact-link:hover {
+    font-size: 1.3rem;
+  }
 }
 @media only screen and (min-width: 40em) {
   #contact-link {

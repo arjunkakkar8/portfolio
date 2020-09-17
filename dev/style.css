@@ -34,6 +34,9 @@
   color: rgba(255,255,255,0.2);
   text-decoration: none;
 }
+.project-container a:hover {
+  text-decoration: underline;
+}
 .project-container svg {
   fill: rgba(255,255,255,0.2);
   position: relative;

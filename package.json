@@ -5,10 +5,10 @@
   "main": "js/main.js",
   "scripts": {
     "start": "run-p make-tmp doc build watch serve",
-    "make-tmp": "rm -r .tmp; mkdir .tmp",
+    "make-tmp": "rm -rf .tmp && mkdir .tmp",
     "doc": "node ./scripts/fetch-copy.js",
     "build": "run-p build:assets build:html build:js build:css",
-    "build:assets": "rm -r dev/assets ; cp -r src/assets dev/assets",
+    "build:assets": "rm -rf dev/assets && cp -r src/assets dev/assets",
     "build:js": "parcel build src/js/index.js --out-dir dev",
     "build:css": "stylus -w src/css/style.styl -u autoprefixer-stylus -o dev",
     "build:html": "node ./scripts/hbs2html.js",

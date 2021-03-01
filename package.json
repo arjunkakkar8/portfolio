@@ -35,6 +35,6 @@
     "intersection-observer": "^0.10.0",
     "js": "^0.1.0",
     "scrollama": "^2.2.1",
-    "three": "^0.117.1"
+    "three": "^0.125.0"
   }
 }

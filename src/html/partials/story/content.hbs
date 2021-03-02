@@ -1,7 +1,7 @@
 <section id="content">
   {{#each copy.projects}}
     <div
-      class="project-container"
+      class="project-container{{#if @first}} active{{/if}}"
       data-index="{{@index}}"
       data-img="./assets/images/{{{this.image}}}"
     >

@@ -1,7 +1,7 @@
 #content {
   position: relative;
   padding: 3em;
-  padding-top: 4em;
+  padding-top: 0;
   margin: 0;
   border-top: 3px solid rgba(0,0,0,0.2);
   overflow-x: hidden;
@@ -15,10 +15,13 @@
   max-width: 40em;
   margin: auto;
   opacity: 0;
-  padding: 4em 1em;
+  padding-top: 120px;
   color: rgba(255,255,255,0.2);
   transition: color 500ms;
   font-weight: 300;
+}
+.project-container:first-of-type {
+  padding-top: 50px;
 }
 .project-container h3 {
   font-size: 1.3em;

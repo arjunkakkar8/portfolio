@@ -17,7 +17,7 @@
     opacity 0
     padding-top 120px
     color rgba(255, 255, 255, 0.2)
-    transition color 500ms
+    transition color 500ms, transform 500ms
     font-weight 300
     &:first-of-type
         padding-top 50px
@@ -35,8 +35,13 @@
     svg 
         fill rgba(255, 255, 255, 0.2)
         position relative
-        top 13px
+        top 12px
+        transform: scale(0.85) translateX(-8px)
+        +mq('bp-4')
+            top 11px
+            transform: scale(1)
     &.active
+        transform scale(1.1)
         color white
         a
             color white

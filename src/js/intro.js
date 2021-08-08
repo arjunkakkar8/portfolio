@@ -67,11 +67,9 @@ function postText_step3() {
     .duration(300)
     .style("opacity", 1);
   d3.selectAll(".project-container")
-    .style("transform", "scale(1.3) translate(5%, -2%)")
     .transition()
     .duration(800)
     .delay((_d, i) => i * 300)
     .style("opacity", 1)
-    .style("transform", "scale(1)");
   setTimeout(initObserver, 700);
 }

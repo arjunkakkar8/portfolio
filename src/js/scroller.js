@@ -6,6 +6,7 @@ function initObserver() {
   let active = null;
   const options = {
     root: document.querySelector("#content"),
+    rootMargin: '-10%',
     threshold: new Array(10).fill(1).map((_, i) => 0.1 * i),
   };
 
@@ -13,6 +14,7 @@ function initObserver() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         let relY = entry.boundingClientRect.y - entry.rootBounds.y;
+        console.log(relY)
         if (relY < 100) {
           if (active != entry.target) {
             const curr_tex = active

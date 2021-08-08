@@ -17,7 +17,7 @@
   opacity: 0;
   padding-top: 120px;
   color: rgba(255,255,255,0.2);
-  transition: color 500ms;
+  transition: color 500ms, transform 500ms;
   font-weight: 300;
 }
 .project-container:first-of-type {
@@ -43,9 +43,17 @@
 .project-container svg {
   fill: rgba(255,255,255,0.2);
   position: relative;
-  top: 13px;
+  top: 12px;
+  transform: scale(0.85) translateX(-8px);
+}
+@media only screen and (min-width: 40em) {
+  .project-container svg {
+    top: 11px;
+    transform: scale(1);
+  }
 }
 .project-container.active {
+  transform: scale(1.1);
   color: #fff;
 }
 .project-container.active a {
